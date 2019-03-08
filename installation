@@ -1,0 +1,24 @@
+#!/bin/bash
+sudo apt-get install tshark -y && sudo apt-get install cron && sudo apt-get install figlet
+sudo apt-get install python2.7
+#sudo apt-get install python-pip
+#sudo pip install os
+echo "Enter the username for the terminal: "
+read uname
+echo $uname >> fakeshadow
+echo "Enter the password for the terminal (Note: You cannot change the password again!): "
+read pwd
+sudo echo $pwd >> fakeshadow
+cwd=`pwd`
+cd /etc/
+sudo git clone https://github.com/coflin/Intrusion-Detection-System.git
+sudo chmod -R 755 /etc/Intrusion-Detection-System/*
+cd Intrusion-Detection-System/shaktimaan
+sudo cp -rp fksencrypt /usr/bin/
+sudo cp -rp fksdecrypt /usr/bin
+sudo ./crontabsc.sh
+sudo cp -rp /etc/Intrusion-Detection-System/shaktimaan/bashmenu/* /usr/bin/
+sudo mv $cwd/fakeshadow /etc/Intrusion-Detection-System/shaktimaan
+fksencrypt
+sudo cat bashrcscript >> ~/.bashrc
+cd 
